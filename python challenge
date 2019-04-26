@@ -1,0 +1,36 @@
+1) Define a method that ask the user for a number. Depending on whether the number is even or odd, print out an appropriate message
+num = input("Type a number: ")
+num = int(num)
+if (num % 2 ==0):
+print(num, "is an even number!")
+else:
+print(num, "is an odd number!")
+
+2) Write a method that takes a number and print its square
+square = input("Type a number to find out its square: ")
+square = int(square)
+result = square**2
+print("The result is ", result)
+
+3) Write a method to convert degrees of Fahrenheit to Celsius.
+fah = int(input("Enter a temperature in Fahrenheit to convert to Celcius: "))
+cel = (fah -32) * 5/9
+print(fah, " in Fahrenheit is ", round(cel), " in Celcius")\
+
+4) Create a method that takes a list of numbers. Return the largest number in the list.
+lv = [55, 3, 47, 90, 17, 333] 
+print(max(lv))
+
+5) Define a method that ask the user for a string and print out whether this string is a palindrome or not. (A palindrome is a string that reads the same forwards and backwards.)
+user_str = str(input("Type a word to know if it is a palindrome: ")) 
+rev_user_str = reversed(user_str)
+if list(user_str) == list(rev_user_str):
+print(user_str + " it is a palindrome")
+else:
+print(user_str + " it is not a palindrome")
+
+6) Create a method that returns the number of vowels per string.
+data = input(("Please type a setence to dicover how may vowels it has: "))
+vowels = "aeiouAEIOU"
+for v in vowels:
+print(v, data.count(v))
