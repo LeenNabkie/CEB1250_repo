@@ -2,28 +2,24 @@ cce-fb105-17m:~ l_nabkie$ find . -name db-sandbox
 
 cce-fb105-17m:~ l_nabkie$ git clone https://github.com/danspaes/db-sandbox.git
 cce-fb105-17m:db-sandbox l_nabkie$ docker exec -it mysql mysql -uroot -p’example’
-
-  
-
-Add the field, course_day of type varchar2 of 50.
 
 
-List the SQL subtypes, defining their purpose Create the tables course, with fields:
-Create the tables course, with fields:
+1) Create the tables course, with fields:
 - course_id of type integer,
-- course_name of type varchar2 having the size of 50 course_description of type varchar2 having the size of 100.
+- course_name of type varchar2 having the size of 50
 - course_description of type varchar2 having the size of 100.
+
+mysql> CREATE TABLE course (course_id int, course_name varchar(50), course_description varchar(100));
+
+2) Add the field, course_day of type varchar2 of 50.
+mysql> ALTER TABLE cours ADD course_dayVARCHAR(50);
+mysql> SHOW table;
+
+
 
 mysql> CREATE DATABASE school;
 mysql> use School
 database changed
-
-mysql> CREATE TABLE course (course_id int, course_name archar(50), course_description varchar(100));
-
-Add the field, course_day of type varchar2 of 50.
-mysql> ALTER TABLE cours ADD course_dayVARCHAR(50);
-mysql> SHOW table;
-
 
 
 mysql> USE employess
@@ -40,7 +36,6 @@ SELECT * FROM employess WHERE salaries > 60000 AND < 90000;
 
  Get all titles where title is equal to engineer
 SELECT * FROM titles WHERE title ='engineer';
-
 
 
 DESCRIBE course;
