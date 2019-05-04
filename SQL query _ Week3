@@ -1,0 +1,60 @@
+Write a SQL query to get the third highest salary of an employee from employee_table 
+
+mysql> select * from employees inner join salaries on employees.emp_no = salaries.emp_no where salary = (select salary from salaries order by salary desc limit 2, 1);
++--------+------------+------------+-----------+--------+------------+--------+--------+------------+------------+
+| emp_no | birth_date | first_name | last_name | gender | hire_date  | emp_no | salary | from_date  | to_date    |
++--------+------------+------------+-----------+--------+------------+--------+--------+------------+------------+
+| 254466 | 1963-05-27 | Honesty    | Mukaidono | M      | 1986-08-08 | 254466 | 156286 | 2001-08-04 | 9999-01-01 |
++--------+------------+------------+-----------+--------+------------+--------+--------+------------+------------+
+1 row in set (2.15 sec)
+
+
+
+
+What is the difference between ‘HAVING’ CLAUSE and a ‘WHERE’ CLAUSE
+
+1 - Apart from SELECT queries, you can use WHERE clause with UPDATE and DELETE clause but HAVING clause can only be used with SELECT query.
+2 - WHERE clause is used for filtering rows and it applies on each and every row, while HAVING clause is used to filter groups in SQL.
+3 - One syntax level difference between WHERE and HAVING clause is that, former is used before GROUP BY clause, while later is used after GROUP BY clause.
+4 - When WHERE and HAVING clause are used together in a SELECT query with aggregate function,  WHERE clause is applied first on individual rows and only rows which pass the condition is included for creating groups. Once group is created, HAVING clause is used to filter groups based upon condition specified.
+
+
+
+
+Write a SQL that returns the employee name and title for all employees with even number as actual salary (to_date is 9999-01-01)
+
+mysql> select employees.emp_no, employees.first_name, employees.last_name, titles.title, salaries.salary, salaries.to_date from employees inner join (titles inner join salaries on salaries.emp_no = titles.emp_no) on employees.emp_no = titles.emp_no where  salaries.salary % 2 = 0 and salaries.to_date = '9999-01-01';
+
+
+
+·What is wrong with the following query, re-write it making the needed corrections.
+·SELECT employee.emp_no, AVG(salaries.salary)
+·FROM employee INNER JOIN salaries AT employee.emp_no = salaries.emp_no
+·HAVING AVG(salaries.salary) > 10000
+·GROUP BY employee.emp_no
+
+mysql> SELECT employees.emp_no, AVG(salaries.salary) as avg_salary FROM employees INNER JOIN salaries on salaries.emp_no = employees.emp_no GROUP BY employees.emp_no having AVG(salaries.salary) > 10000;
+
+
+
+Return the minimum salary of the salary table
+
+mysql> select MIN(salary) as min_salary from salaries;
++------------+
+| min_salary |
++------------+
+|      38623 |
++------------+
+1 row in set (0.43 sec)
+
+
+
+Return the maximum value for date of birth on the employee table
+
+mysql> select MAX(birth_date) as max_birth_date from employees;
++----------------+
+| max_birth_date |
++----------------+
+| 1965-02-01     |
++----------------+
+1 row in set (0.05 sec)
